@@ -1,0 +1,33 @@
+.flight-type-toggle {
+	position: relative;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	white-space: nowrap;
+	font-size: calc(32 * 1px + (160 - 32) * (100vw - 320 * 1px)/ (1920 - 320));
+	margin-bottom: 5vh;
+}
+
+.flight-type-toggle__link {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	color: #000;
+	text-decoration: none;
+	font-weight: 700;
+	font-family: 'Roboto Condensed', Arial, 'sans-serif';
+	cursor: pointer;
+	transition: color .4s;
+}
+
+.flight-type-toggle__link + .flight-type-toggle__link {
+	margin-left: 0.7em;
+}
+
+.flight-type-toggle__link.active {
+	color: #ffac02;
+}
+
+.flight-type-toggle__link:hover {
+	color: #ffbe38!important;
+}
+

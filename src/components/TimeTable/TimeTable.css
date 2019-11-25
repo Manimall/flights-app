@@ -1,0 +1,17 @@
+.page-layout__fill {
+	display: flex;
+	flex: 1 1 auto;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: calc(var(--window-height) * 4 / 100);
+	margin-bottom: calc(var(--window-height) * 10 / 100);
+}
+
+.page-layout__header {
+	margin-bottom: 45px;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	min-height: calc(var(--window-height) * 55 / 100);
+}

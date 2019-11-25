@@ -1,0 +1,60 @@
+:root {
+	--window-height: 100vh;
+	--ion-text-color-step-150: #fff;
+	--ion-color-primary: #ffac02;
+	--ion-background-color-step-50: #ffac02;
+	--ion-background-color: #ffac02;
+	--ion-text-color: color-property color #000;
+}
+
+html {
+	position: relative;
+	overflow-y: scroll;
+	min-width: 320px;
+	height: 100%;
+	box-sizing: border-box;
+	color: #000;
+	font-size: 18px;
+	font-family: Roboto, Arial, 'sans-serif';
+	line-height: 1.4;
+	background-color: #fff;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	position: relative;
+	overflow: hidden;
+	box-sizing: border-box;
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #fff;
+	-webkit-tap-highlight-color: transparent;
+	touch-action: manipulation
+}
+
+img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #f1f3f4;
+	opacity: 0;
+}
+
+.layout-wrapper {
+	height: 100%;
+}
+
+.page-wrapper {
+	box-sizing: border-box;
+	min-height: 100%;
+}
+
+.layout {
+	margin: 0 90px;
+}
+
+.page-wrapper__content {
+	padding-bottom: 180px;
+	position: relative;
+}

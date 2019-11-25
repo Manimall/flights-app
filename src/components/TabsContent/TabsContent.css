@@ -1,0 +1,30 @@
+.page-layout__content {
+	display: flex;
+	flex-direction: column;
+}
+
+.alert {
+	position: relative;
+	padding: .75rem 1.25rem;
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+}
+
+.alert-danger {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.alert-danger code {
+	padding-left: 10px;
+	padding-top: 2px;
+}
+
+.magic-for-wrapper {
+	padding: 0;
+}
