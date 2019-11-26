@@ -121,7 +121,7 @@ const Search = () => {
 								</span>
 							</div>
 
-							{focus && <RightTipButtons ref={btnRef} handleSubmit={handleSubmit}/>}
+							{focus && <RightTipButtons ref={btnRef} />}
 						</form>
 
 						<div className="underline-container">
