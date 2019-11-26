@@ -15,7 +15,9 @@ const App = () => (
 					<Switch>
 						<Route path={'/timetable/arrival'} render={() => <TimeTable direction="arrival" /> } exact />
 						<Route path={'/timetable/departure'} render={() => <TimeTable direction="departure" /> } exact />
+
 						<Redirect from={'/timetable/'} to={'/timetable/departure/'} exact />
+						<Redirect from={'/'} to={'/timetable/departure/'} exact />
 
 						<Route
 							path="*"

@@ -58,6 +58,10 @@ const Search = () => {
 
 	const onBlur = (e) => {
 		if (searchIconRef.current === e.relatedTarget || btnRef.current === e.relatedTarget) handleSubmit();
+		if (e.relatedTarget && e.relatedTarget.type === 'reset') {
+			resetSearchTerm();
+			return;
+		}
 		setFocus(false);
 		toggleClass(lineClassez);
 	};
@@ -117,7 +121,7 @@ const Search = () => {
 								</span>
 							</div>
 
-							{focus && <RightTipButtons removeFocus={onBlur} resetSearchTerm={resetSearchTerm} ref={btnRef} handleSubmit={handleSubmit}/>}
+							{focus && <RightTipButtons ref={btnRef} handleSubmit={handleSubmit}/>}
 						</form>
 
 						<div className="underline-container">

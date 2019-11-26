@@ -9,7 +9,10 @@
 В качестве примера можно посмотреть на http://www.svo.aero/.
 Ограничений на использование шаблонизаторов и библиотек нет.
 
+// deprecated
+
 To run the App use `npm start` and then in browser add `timetable/` to the existing Url.
+
 
 --------
 ### Additional
