@@ -5,9 +5,9 @@ import {Link} from 'react-router-dom';
 let Tab = (props) => {
 	const { className, children, value: direction, isActive, onClick } = props;
 
-	// const handleButtonClick = event => {
-	// 	onClick(event, direction);
-	// };
+	const handleButtonClick = event => {
+		onClick(event, direction);
+	};
 
 	const classes = cn(className, {
 		active: isActive
@@ -18,7 +18,7 @@ let Tab = (props) => {
 			to={`/timetable/${direction}`}
 			className={classes}
 			children={children}
-			// onClick={handleButtonClick}
+			onClick={handleButtonClick}
 		/>
 	);
 };

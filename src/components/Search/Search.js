@@ -13,15 +13,17 @@ import './Search.css';
 
 
 const Search = () => {
-
 	const dispatch = useDispatch();
 
 	const initialFormValue = '';
 
 	const [formValue, setFormValue] = useState(initialFormValue);
 	const [active, setActiveClass] = useState(false);
-	const inputRef = useRef(null);
 	const [focus, setFocus] = useState(false);
+
+	const inputRef = useRef(null);
+	const btnRef= useRef(null);
+	const searchIconRef = useRef(null);
 
 	const history = useHistory();
 	const { pathname } = history.location;
@@ -40,12 +42,13 @@ const Search = () => {
 	};
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (formValue === initialFormValue) return;
-		console.log(formValue);
-		dispatch(searchFlight(formValue));
+		e && e.preventDefault();
 
+		if (formValue === initialFormValue) return;
+		dispatch(searchFlight(formValue));
 		history.push(`${pathname}?search=${formValue}`);
+
+		setFocus(false);
 	};
 
 	const onFocus = () => {
@@ -54,13 +57,20 @@ const Search = () => {
 	};
 
 	const onBlur = () => {
+		if (searchIconRef.current || btnRef.current) handleSubmit();
 		setFocus(false);
 		toggleClass(lineClassez);
 	};
 
 	useEffect(() => {
-		inputRef.current.addEventListener("focus", onFocus);
-		inputRef.current.addEventListener("blur", onBlur);
+		const refNode = inputRef.current;
+		refNode.addEventListener("focus", onFocus);
+		refNode.addEventListener("blur", onBlur);
+
+		return () => {
+			refNode.removeEventListener("focus", onFocus);
+			refNode.removeEventListener("blur", onBlur);
+		};
 	});
 
 	const resetSearchTerm = () => {
@@ -69,7 +79,7 @@ const Search = () => {
 	};
 
 	const drawIconOnTerms = () => {
-		if (focus || formValue === initialFormValue) return <SearchIcon />;
+		if (focus || formValue === initialFormValue) return <SearchIcon ref={searchIconRef} />;
 		return <CancelSearchButton resetSearchTerm={resetSearchTerm}/>
 	};
 
@@ -107,7 +117,7 @@ const Search = () => {
 								</span>
 							</div>
 
-							{focus && <RightTipButtons removeFocus={onBlur}/>}
+							{focus && <RightTipButtons removeFocus={onBlur} ref={btnRef} handleSubmit={handleSubmit}/>}
 						</form>
 
 						<div className="underline-container">
