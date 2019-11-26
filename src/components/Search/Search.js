@@ -1,86 +1,30 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { useDispatch } from "react-redux";
-import cn from 'classnames';
-import { useHistory } from "react-router";
-
-import { searchFlight } from "modules/search";
+import React from 'react';
 
 import { SearchIcon } from "./SearchIcon";
 import { CancelSearchButton } from "./CancelSearchIcon";
 import { RightTipButtons } from './RightTipButtons';
 
+import { useSearch } from "hooks/use-search";
+
 import './Search.css';
 
 
 const Search = () => {
-	const dispatch = useDispatch();
 
-	const initialFormValue = '';
+	const {
+		focus,
+		formValue,
+		initialFormValue,
 
-	const [formValue, setFormValue] = useState(initialFormValue);
-	const [active, setActiveClass] = useState(false);
-	const [focus, setFocus] = useState(false);
+		btnRef,
+		inputRef,
+		searchIconRef,
+		lineClassez,
 
-	const inputRef = useRef(null);
-	const btnRef= useRef(null);
-	const searchIconRef = useRef(null);
-
-	const history = useHistory();
-	const { pathname } = history.location;
-
-	const toggleClass = useCallback((classez) => cn(classez, {
-		active: setActiveClass(!active)
-	}), [active]);
-
-	const lineClassez = cn({
-		'filters-underline__fill': true,
-		active: active
-	});
-
-	const handleChange = ({ target: { value } }) => {
-		setFormValue(value);
-	};
-
-	const handleSubmit = (e) => {
-		e && e.preventDefault();
-
-		if (formValue === initialFormValue) return;
-		dispatch(searchFlight(formValue));
-		history.push(`${pathname}?search=${formValue}`);
-
-		setFocus(false);
-	};
-
-	const onFocus = () => {
-		setFocus(true);
-		toggleClass(lineClassez);
-	};
-
-	const onBlur = (e) => {
-		if (searchIconRef.current === e.relatedTarget || btnRef.current === e.relatedTarget) handleSubmit();
-		if (e.relatedTarget && e.relatedTarget.type === 'reset') {
-			resetSearchTerm();
-			return;
-		}
-		setFocus(false);
-		toggleClass(lineClassez);
-	};
-
-	useEffect(() => {
-		const refNode = inputRef.current;
-		refNode.addEventListener("focus", onFocus);
-		refNode.addEventListener("blur", onBlur);
-
-		return () => {
-			refNode.removeEventListener("focus", onFocus);
-			refNode.removeEventListener("blur", onBlur);
-		};
-	});
-
-	const resetSearchTerm = () => {
-		setFormValue(initialFormValue);
-		dispatch(searchFlight(initialFormValue))
-	};
+		resetSearchTerm,
+		handleSubmit,
+		handleChange,
+	} = useSearch();
 
 	const drawIconOnTerms = () => {
 		if (focus || formValue === initialFormValue) return <SearchIcon ref={searchIconRef} />;
