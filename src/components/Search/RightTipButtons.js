@@ -1,17 +1,15 @@
 import React from 'react';
 
-export const RightTipButtons = React.forwardRef(({ removeFocus, handleSubmit }, btnRef) => {
+export const RightTipButtons = React.forwardRef(({ removeFocus, resetSearchTerm }, btnRef) => {
 
-	React.useEffect(() => {
-		const refNode = btnRef.current;
-		refNode.addEventListener('click', handleSubmit);
-
-		return () => refNode.removeEventListener('click', handleSubmit);
-	});
+	const cleanUpSearch = () => {
+		removeFocus();
+		resetSearchTerm();
+	};
 
 	return (
 		<div className="tip-buttons__wrapper">
-			<button onClick={removeFocus} type="button" className="tip-button tip-button--reset">
+			<button onClick={cleanUpSearch} type="button" className="tip-button tip-button--reset">
 				Отменить
 			</button>
 			<button ref={btnRef} type="button" className="tip-button tip-button--search">
