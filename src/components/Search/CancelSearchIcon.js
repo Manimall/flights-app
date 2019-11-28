@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const CancelSearchButton = ({ resetSearchTerm }) => (
+export const CancelSearchButton = React.memo(({ resetSearchTerm }) => (
 	<button onClick={resetSearchTerm} className={'search-icon__button'} type="button">
 		<svg viewBox="0 0 11 11" id="close" xmlns="http://www.w3.org/2000/svg">
 			<g fillRule="evenodd" transform="translate(-7 -7)">
@@ -11,5 +11,5 @@ export const CancelSearchButton = ({ resetSearchTerm }) => (
 			</g>
 		</svg>
 	</button>
-);
+));
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SearchIcon = React.forwardRef((_props, ref) => (
+export const SearchIcon = React.memo(React.forwardRef((_props, ref) => (
 	<button ref={ref} className={'search-icon__button'} type="submit">
 		<svg viewBox="0 0 14 14" id="search" xmlns="http://www.w3.org/2000/svg">
 			<g transform="translate(-5 -5)">
@@ -9,4 +9,4 @@ export const SearchIcon = React.forwardRef((_props, ref) => (
 			</g>
 		</svg>
 	</button>
-));
+)));

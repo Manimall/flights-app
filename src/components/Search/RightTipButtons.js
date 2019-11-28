@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const RightTipButtons = React.forwardRef((_props, ref) => (
+export const RightTipButtons = React.memo(React.forwardRef((_props, ref) => (
 	<div className="tip-buttons__wrapper">
 		<button type="reset" className="tip-button tip-button--reset">
 			Отменить
@@ -9,4 +9,4 @@ export const RightTipButtons = React.forwardRef((_props, ref) => (
 			Искать
 		</button>
 	</div>
-));
+)));

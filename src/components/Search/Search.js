@@ -1,4 +1,5 @@
-import React from 'react';
+import cn from "classnames";
+import React, { useState, useCallback, memo } from 'react';
 
 import { SearchIcon } from "./SearchIcon";
 import { CancelSearchButton } from "./CancelSearchIcon";
@@ -9,7 +10,9 @@ import { useSearch } from "hooks/use-search";
 import './Search.css';
 
 
-const Search = () => {
+let Search = () => {
+
+	const [active, setActiveClass] = useState(false);
 
 	const {
 		focus,
@@ -19,17 +22,25 @@ const Search = () => {
 		btnRef,
 		inputRef,
 		searchIconRef,
-		lineClassez,
 
 		resetSearchTerm,
 		handleSubmit,
 		handleChange,
 	} = useSearch();
 
-	const drawIconOnTerms = () => {
+	const toggleClass = (classez) => cn(classez, {
+		active: setActiveClass(!active)
+	});
+
+	const lineClassez = cn({
+		'filters-underline__fill': true,
+		active: active
+	});
+
+	const drawIconOnTerms = useCallback(() => {
 		if (focus || formValue === initialFormValue) return <SearchIcon ref={searchIconRef} />;
 		return <CancelSearchButton resetSearchTerm={resetSearchTerm}/>
-	};
+	},[focus, formValue, initialFormValue, resetSearchTerm, searchIconRef]);
 
 	return (
 		<section className="ng-tns-c27-14">
@@ -56,6 +67,8 @@ const Search = () => {
 										value={formValue}
 										ref={inputRef}
 										onChange={handleChange}
+										onFocus={() => toggleClass(lineClassez)}
+										onBlur={() => toggleClass(lineClassez)}
 										maxLength={'50'}
 										style={{position: 'relative', verticalAlign: 'top', backgroundColor: 'transparent'}}
 									/>
@@ -82,5 +95,7 @@ const Search = () => {
 		</section>
 	)
 };
+
+Search = memo(Search);
 
 export default Search
