@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { useState, useCallback, memo } from 'react';
+import React, { useState, memo } from 'react';
 
 import { SearchIcon } from "./SearchIcon";
 import { CancelSearchButton } from "./CancelSearchIcon";
@@ -37,10 +37,10 @@ let Search = () => {
 		active: active
 	});
 
-	const drawIconOnTerms = useCallback(() => {
+	const drawIconOnTerms = () => {
 		if (focus || formValue === initialFormValue) return <SearchIcon ref={searchIconRef} />;
 		return <CancelSearchButton resetSearchTerm={resetSearchTerm}/>
-	},[focus, formValue, initialFormValue, resetSearchTerm, searchIconRef]);
+	};
 
 	return (
 		<section className="ng-tns-c27-14">
